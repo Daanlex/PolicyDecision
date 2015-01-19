@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "首长决策";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/css/tree")
+@Scripts.Render("~/bundles/js/tree")
+@Styles.Render("~/bundles/css/swiper")
+
+
+@section scripts{
+    $(document).ready(function() {
+    $('.tree').treegrid({
+    expanderExpandedClass: 'glyphicon glyphicon-minus',
+    expanderCollapsedClass: 'glyphicon glyphicon-plus'
+    });
+    });
+
+}
+<link href="~/bootstrap/css/idangerous.swiper.css" rel="stylesheet" />
+<style>
+    .swiper-container {
+        width: 1490px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .red-slide {
+        /*background: #ca4040;*/
+        background-image: url("/Images/details/zcmb_bm_2014nd.jpg");
+        background-repeat: no-repeat;
+    }
+
+    .blue-slide {
+        /*background: #4390ee;*/
+        background-image: url("/Images/details/zcmb_bm_2013nd.jpg");
+        background-repeat: no-repeat;
+    }
+
+    .orange-slide {
+        /*background: #ff8604;*/
+        background-image: url("/Images/details/zcmb_bm_2015nd.jpg");
+        background-repeat: no-repeat;
+    }
+
+    .swiper-slide .title {
+        font-style: italic;
+        font-size: 42px;
+        margin-top: 80px;
+        margin-bottom: 0;
+        line-height: 45px;
+    }
+
+    .swiper-slide p {
+        font-style: italic;
+        font-size: 25px;
+    }
+
+    .pagination {
+        position: absolute;
+        z-index: 20;
+        left: 10px;
+        bottom: 10px;
+    }
+
+    .swiper-pagination-switch {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background: #555;
+        margin-right: 5px;
+        opacity: 0.8;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
+
+    .swiper-active-switch {
+        background: #fff;
+    }
+
+    .swiper-dynamic-links {
+        text-align: center;
+    }
+
+        .swiper-dynamic-links a {
+            display: inline-block;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            font-size: 12px;
+            text-decoration: none;
+            color: #333;
+            background: #eee;
+        }
+</style>
+<!-- Add jQuery library -->
+<script type="text/javascript" src="~/bootstrap/jquery/jquery-1.7.1.min.js"></script>
+<!-- Add fancyBox -->
+<link rel="stylesheet" href="~/bootstrap/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="~/bootstrap/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+<!-- Optionally add helpers - button, thumbnail and/or media -->
+<link rel="stylesheet" href="~/bootstrap/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css" media="screen" />
+<script type="text/javascript" src="~/bootstrap/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<script type="text/javascript" src="~/bootstrap/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+<link rel="stylesheet" href="~/bootstrap/fancybox/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css" media="screen" />
+<script type="text/javascript" src="~/bootstrap/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+@section right
+{
+    <div class="row">
+        <a id="single_2" href="/Images/details/zcmb_dwt_bgtt_2014nd.jpg">
+            <img style="width: 150px; height: 150px;" src='/Images/details/zcbm_dwt_bgt.png' alt="" />
+        </a>
+    </div>
+    <script src="~/bootstrap/js/idangerous.swiper.js"></script>
+    <script>
+        $(function () {
+            var mySwiper = new Swiper('.swiper-container', {
+                pagination: '.pagination',
+                loop: true,
+                grabCursor: true,
+                paginationClickable: true,
+                initialSlide: 1
+            });
+            mySwiper.addCallback('SlideChangeEnd', function(swiper) {
+                //alert('你已选中了' + mySwiper.activeLoopIndex);
+                if(mySwiper.activeLoopIndex=='0')
+                    changeNd('2013');
+                if (mySwiper.activeLoopIndex == '1')
+                    changeNd('2014');
+                if (mySwiper.activeLoopIndex == '2')
+                    changeNd('2015');
+            });
+        });
+
+
+        function changeNd(id) {
+
+            $("#nd_2013").attr("src", "/Images/details/2013.png");
+            $("#nd_2014").attr("src", "/Images/details/2014.png");
+            $("#nd_2015").attr("src", "/Images/details/2015.png");
+            if (id == '2013') {
+                $("#nd_2013").attr("src", "/Images/details/2013_on.png");
+            }
+            if (id == '2014') {
+                $("#nd_2014").attr("src", "/Images/details/2014_on.png");
+            }
+            if (id == '2015') {
+                $("#nd_2015").attr("src", "/Images/details/2015_on.png");
+            }
+        }
+
+        function changeMenu(id) {
+            $("#nd").attr("src", "/Images/details/nd.png");
+            $("#jd").attr("src", "/Images/details/jd.png");
+            $("#yf").attr("src", "/Images/details/yf.png");
+            $("#ln").attr("src", "/Images/details/ln.png");
+            if (id == 'nd') {
+                $("#nd").attr("src", "/Images/details/nd_on.png");
+            }
+            if (id == 'jd') {
+                $("#jd").attr("src", "/Images/details/jd_on.png");
+            }
+            if (id == 'yf') {
+                $("#yf").attr("src", "/Images/details/yf_on.png");
+            }
+            if (id == 'ln') {
+                $("#ln").attr("src", "/Images/details/ln_on.png");
+            }
+        }
+        $(function () {
+            $("#nd_2013").click(function () {
+                changeNd('2013');
+            });
+            $("#nd_2014").click(function () {
+                changeNd('2014');
+            });
+            $("#nd_2015").click(function () {
+                changeNd('2015');
+            });
+
+            $("#nd").click(function () {
+                changeMenu('nd');
+            });
+            $("#jd").click(function () {
+                changeMenu('jd');
+            });
+            $("#yf").click(function () {
+                changeMenu('yf');
+            });
+            $("#ln").click(function () {
+                changeMenu('ln');
+            });
+        });
+    </script>
+}

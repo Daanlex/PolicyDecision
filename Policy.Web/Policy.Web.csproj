@@ -1,0 +1,488 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0DAC909-4D21-403B-9B64-D51AA90726DF}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Policy.Web</RootNamespace>
+    <AssemblyName>Policy.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.30506.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.30506\lib\net40\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AlarmController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="bootstrap\css\bootstrap-theme.css" />
+    <Content Include="bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap\css\datetimepicker.css" />
+    <Content Include="bootstrap\css\idangerous.swiper.css" />
+    <Content Include="bootstrap\css\jquery.treegrid.css" />
+    <Content Include="bootstrap\css\metro-bootstrap-responsive.css" />
+    <Content Include="bootstrap\css\metro-bootstrap.css" />
+    <Content Include="bootstrap\fancybox\blank.gif" />
+    <Content Include="bootstrap\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="bootstrap\fancybox\fancybox_loading.gif" />
+    <Content Include="bootstrap\fancybox\fancybox_overlay.png" />
+    <Content Include="bootstrap\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="bootstrap\fancybox\fancybox_sprite.png" />
+    <Content Include="bootstrap\fancybox\jquery.fancybox.css" />
+    <Content Include="bootstrap\fancybox\jquery.fancybox.js" />
+    <Content Include="bootstrap\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap\fonts\metroSysIcons.svg" />
+    <Content Include="bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="bootstrap\css\bootstrap.css.map" />
+    <Content Include="bootstrap\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="bootstrap\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="bootstrap\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="bootstrap\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="bootstrap\jquery\jquery-1.10.2.min.js" />
+    <Content Include="bootstrap\jquery\jquery.mousewheel.pack.js" />
+    <Content Include="bootstrap\js\turn.min.js" />
+    <Content Include="Images\Alarm\bg.jpg" />
+    <Content Include="Images\Alarm\审批权限预警.png" />
+    <Content Include="Images\Alarm\报销发票预警.png" />
+    <Content Include="Images\Alarm\接待开支预警.png" />
+    <Content Include="Images\Alarm\敏感开支预警.png" />
+    <Content Include="Images\Alarm\现金使用预警.png" />
+    <Content Include="Images\Alarm\福利补助预警.png" />
+    <Content Include="Images\Alarm\预算外上缴预警.png" />
+    <Content Include="Images\Alarm\预算调整预警.png" />
+    <Content Include="Images\Alarm\首页.png" />
+    <Content Include="Images\details\08_查看明细_书_目录.jpg" />
+    <Content Include="Images\details\09_查看明细_书_发票.jpg" />
+    <Content Include="Images\details\book10.png" />
+    <Content Include="Images\details\book5.png" />
+    <Content Include="Images\details\book6.png" />
+    <Content Include="Images\details\book7.png" />
+    <Content Include="Images\details\book8.png" />
+    <Content Include="Images\details\book9.png" />
+    <Content Include="Images\details\jd.png" />
+    <Content Include="Images\details\jd_on.png" />
+    <Content Include="Images\details\jfsz_bg.jpg" />
+    <Content Include="Images\details\jfsz_bg_2.jpg" />
+    <Content Include="Images\details\ln.png" />
+    <Content Include="Images\details\ln_on.png" />
+    <Content Include="Images\details\nd.png" />
+    <Content Include="Images\details\nd_on.png" />
+    <Content Include="Images\details\root_icon.png" />
+    <Content Include="Images\details\subject_off.png" />
+    <Content Include="Images\details\subject_on.png" />
+    <Content Include="Images\details\unit_icon.png" />
+    <Content Include="Images\details\unit_off.png" />
+    <Content Include="Images\details\unit_on.png" />
+    <Content Include="Images\details\yf.png" />
+    <Content Include="Images\details\yf_on.png" />
+    <Content Include="Images\details\zcbm_bgt_t.png" />
+    <Content Include="Images\details\zcbm_bj_hqb_t.png" />
+    <Content Include="Images\details\zcbm_bj_slb_t.png" />
+    <Content Include="Images\details\zcbm_bj_t.png" />
+    <Content Include="Images\details\zcbm_bj_zbb_t.png" />
+    <Content Include="Images\details\zcbm_bj_zzb_t.png" />
+    <Content Include="Images\details\zcbm_dwt_bgt.png" />
+    <Content Include="Images\details\zcbm_dwt_bj.png" />
+    <Content Include="Images\details\zcbm_dwt_eb.png" />
+    <Content Include="Images\details\zcbm_dwt_hqb.png" />
+    <Content Include="Images\details\zcbm_dwt_jxb.png" />
+    <Content Include="Images\details\zcbm_dwt_sb.png" />
+    <Content Include="Images\details\zcbm_dwt_slb.png" />
+    <Content Include="Images\details\zcbm_dwt_txb.png" />
+    <Content Include="Images\details\zcbm_dwt_zbb.png" />
+    <Content Include="Images\details\zcbm_dwt_zzb.png" />
+    <Content Include="Images\details\zcbm_eb_t.png" />
+    <Content Include="Images\details\zcbm_jxb_t.png" />
+    <Content Include="Images\details\zcbm_sb_t.png" />
+    <Content Include="Images\details\zcbm_txb_t.png" />
+    <Content Include="Images\details\zcmb_2013_jd.jpg" />
+    <Content Include="Images\details\zcmb_2013_nd.jpg" />
+    <Content Include="Images\details\zcmb_2013_yf.jpg" />
+    <Content Include="Images\details\zcmb_2014_jd.jpg" />
+    <Content Include="Images\details\zcmb_2014_nd.jpg" />
+    <Content Include="Images\details\zcmb_2014_yf.jpg" />
+    <Content Include="Images\details\zcmb_2015_jd.jpg" />
+    <Content Include="Images\details\zcmb_2015_nd.jpg" />
+    <Content Include="Images\details\zcmb_2015_yf.jpg" />
+    <Content Include="Images\details\zcmb_bj_2013_nd.jpg" />
+    <Content Include="Images\details\zcmb_bj_2014_nd.jpg" />
+    <Content Include="Images\details\zcmb_bj_2015_nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_bgtt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_bjt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_ebt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_jxbt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_sbt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_dwt_txbt_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_ln.jpg" />
+    <Content Include="Images\details\关闭.png" />
+    <Content Include="Images\details\查看明细_书展开1l.png" />
+    <Content Include="Images\details\查看明细_书展开1r.png" />
+    <Content Include="Images\details\查看明细_书展开2l.png" />
+    <Content Include="Images\details\查看明细_书展开2r.png" />
+    <Content Include="Images\details\目录.png" />
+    <Content Include="Images\details\目录l.png" />
+    <Content Include="Images\details\目录r.png" />
+    <Content Include="ztree\css\demo.css" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\2.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\3.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\4.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\5.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\6.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\7.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\8.png" />
+    <Content Include="ztree\css\zTreeStyle\img\diy\9.png" />
+    <Content Include="ztree\css\zTreeStyle\img\line_conn.gif" />
+    <Content Include="ztree\css\zTreeStyle\img\loading.gif" />
+    <Content Include="ztree\css\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="ztree\css\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="ztree\css\zTreeStyle\zTreeStyle.css" />
+    <Content Include="ztree\js\jquery-1.4.4.min.js" />
+    <Content Include="ztree\js\jquery.ztree.all-3.5.js" />
+    <Content Include="ztree\js\jquery.ztree.all-3.5.min.js" />
+    <Content Include="ztree\js\jquery.ztree.core-3.5.js" />
+    <Content Include="ztree\js\jquery.ztree.core-3.5.min.js" />
+    <Content Include="ztree\js\jquery.ztree.excheck-3.5.js" />
+    <Content Include="ztree\js\jquery.ztree.excheck-3.5.min.js" />
+    <Content Include="ztree\js\jquery.ztree.exedit-3.5.js" />
+    <Content Include="ztree\js\jquery.ztree.exedit-3.5.min.js" />
+    <Content Include="ztree\js\jquery.ztree.exedit.js" />
+    <Content Include="ztree\js\jquery.ztree.exhide-3.5.js" />
+    <Content Include="ztree\js\jquery.ztree.exhide-3.5.min.js" />
+    <None Include="bootstrap\jquery\jquery-1.7.1-vsdoc.js" />
+    <Content Include="bootstrap\jquery\jquery-1.7.1.js" />
+    <Content Include="bootstrap\jquery\jquery-1.7.1.min.js" />
+    <Content Include="bootstrap\jquery\jquery.form.js" />
+    <Content Include="bootstrap\jquery\jquery.widget.min.js" />
+    <Content Include="bootstrap\js\bootstrap-autocomplete.js" />
+    <Content Include="bootstrap\js\bootstrap-datetimepicker.js" />
+    <Content Include="bootstrap\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="bootstrap\js\bootstrap.js" />
+    <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="bootstrap\js\dateFormat.js" />
+    <Content Include="bootstrap\js\idangerous.swiper.js" />
+    <Content Include="bootstrap\js\jquery.treegrid.bootstrap3.js" />
+    <Content Include="bootstrap\js\jquery.treegrid.js" />
+    <Content Include="bootstrap\js\metro.min.js" />
+    <Content Include="bootstrap\js\npm.js" />
+    <Content Include="bootstrap\js\respond.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\details\book1.png" />
+    <Content Include="Images\details\book2.png" />
+    <Content Include="Images\details\book3.png" />
+    <Content Include="Images\details\book4.png" />
+    <Content Include="Images\details\welcome_bg.jpg" />
+    <Content Include="Images\details\welcome_s01.png" />
+    <Content Include="Images\details\welcome_s02.png" />
+    <Content Include="Images\details\welcome_s03.png" />
+    <Content Include="Images\details\welcome_s04.png" />
+    <Content Include="Images\details\welcome_s05.png" />
+    <Content Include="Images\details\welcome_s06.png" />
+    <Content Include="Images\details\welcome_s07.png" />
+    <Content Include="Images\details\zcmb_bm_2013nd.jpg" />
+    <Content Include="Images\details\zcmb_bm_2014nd.jpg" />
+    <Content Include="Images\details\zcmb_bm_2015nd.jpg" />
+    <Content Include="Images\login\bg.jpg" />
+    <Content Include="Images\login\input.png" />
+    <Content Include="Images\login\登录界面参考.jpg" />
+    <Content Include="Images\details\1历年.png" />
+    <Content Include="Images\details\1历年_on.png" />
+    <Content Include="Images\details\1季度.png" />
+    <Content Include="Images\details\1季度_on.png" />
+    <Content Include="Images\details\1年度.png" />
+    <Content Include="Images\details\1年度_on.png" />
+    <Content Include="Images\details\1月份.png" />
+    <Content Include="Images\details\1月份_on.png" />
+    <Content Include="Images\details\2013.png" />
+    <Content Include="Images\details\2013_on.png" />
+    <Content Include="Images\details\2014.png" />
+    <Content Include="Images\details\2014_on.png" />
+    <Content Include="Images\details\2015.png" />
+    <Content Include="Images\details\2015_on.png" />
+    <Content Include="Images\details\line_1.png" />
+    <Content Include="Images\details\line_2.png" />
+    <Content Include="Images\details\line_3.png" />
+    <Content Include="Images\details\单位.png" />
+    <Content Include="Images\details\单位_on.png" />
+    <Content Include="Images\details\导出.png" />
+    <Content Include="Images\details\左侧搜索.png" />
+    <Content Include="Images\details\左侧目录树图标1.png" />
+    <Content Include="Images\details\左侧目录树图标2.png" />
+    <Content Include="Images\details\左侧选中.png" />
+    <Content Include="Images\details\打印.png" />
+    <Content Include="Images\details\添加桌面.png" />
+    <Content Include="Images\details\科目.png" />
+    <Content Include="Images\details\科目_on.png" />
+    <Content Include="Images\details\详情页1.jpg" />
+    <Content Include="Images\details\详情页2.jpg" />
+    <Content Include="Images\details\详情页3.jpg" />
+    <Content Include="Images\details\详情页_bg.jpg" />
+    <Content Include="Images\details\详情页_bg1.jpg" />
+    <Content Include="Images\details\详情页_bg2.jpg" />
+    <Content Include="Images\details\详情页_bg3.jpg" />
+    <Content Include="Images\details\详情页参考.jpg" />
+    <Content Include="Images\details\首页.png" />
+    <Content Include="Scripts\css\idangerous.swiper.css" />
+    <Content Include="Scripts\css\idangerous.swiper.scrollbar.css" />
+    <Content Include="Scripts\js\idangerous.swiper.min.js" />
+    <Content Include="Scripts\js\idangerous.swiper.scrollbar-2.1.js" />
+    <Content Include="Scripts\js\jquery-1.10.1.min.js" />
+    <Content Include="Scripts\prevent.js" />
+    <Content Include="Scripts\touch-0.2.14.min.js" />
+    <Content Include="Views\Alarm\Jump1.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="fashu\images\Thumbs.db" />
+    <Content Include="Views\Home\juece.cshtml" />
+    <Content Include="Views\Home\Jinfei.cshtml" />
+    <None Include="Properties\PublishProfiles\policy.pubxml" />
+    <Content Include="Views\Home\fanshu.cshtml" />
+    <Content Include="Views\Alarm\Index1.cshtml" />
+    <Content Include="Views\Alarm\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bootstrap\fonts\metroSysIcons.ttf" />
+    <Content Include="bootstrap\fonts\metroSysIcons.woff" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2208</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2208/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

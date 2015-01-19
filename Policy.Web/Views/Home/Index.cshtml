@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css/css")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/js")
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <style type="text/css">
+        body {
+            background-image: url(/Images/details/welcome_bg.jpg);
+            background-repeat: no-repeat;
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+            font-family: 'Microsoft YaHei UI';
+            font-weight: bold;
+        }
+
+        .bs-example {
+            border-color: #ddd;
+            border-radius: 4px 4px 0 0;
+            border-width: 1px;
+            box-shadow: none;
+            margin-left: 0;
+            margin-right: 0;
+            border-style: solid;
+        }
+
+        .bs-example-popover .popover {
+            position: relative;
+            display: block;
+            float: left;
+            width: 900px;
+            margin: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        $("#a_pop").popover();
+
+
+        $(function () {
+            $('#guanli').click(function (e) {
+                window.location.href = "/Home/fanshu/?page=1";
+            });
+            $('#juece').click(function (e) {
+                window.location.href = "/Alarm/Index";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" style="margin-top:100px; height:800px;">
+            <div>
+                <button type="button" id="guanli" style="height: 200px; width: 23%; font-size: xx-large; font-weight: bold" class="btn btn-default btn-lg"><img src="/Images/details/welcome_s01.png" alt="..." class="img-circle">综合管理</button>
+                <button type="button" style="height: 200px; width: 23%; font-size: xx-large; font-weight: bold" class="btn btn-default  btn-lg" disabled="disabled"><img src="/Images/details/welcome_s02.png" alt="..." class="img-circle">档案管理</button>
+                <button type="button" id="juece" style="height: 200px; width: 23%; font-size: xx-large; font-weight: bold" class="btn btn-success btn-lg"><img src="/Images/details/welcome_s03.png" alt="..." class="img-circle">决策支持</button>
+                <button type="button" style="height: 200px; width: 23%; font-size: xx-large; font-weight: bold" class="btn btn-default  btn-lg" disabled="disabled"><img src="/Images/details/welcome_s04.png" alt="..." class="img-circle">大数据分析</button>
+
+                <div class="bs-example bs-example-popover">
+                    <div class="popover bottom" style="max-width:900px;">
+                        <div class="arrow" style="left: 100px;"></div>
+                        <h3 class="popover-title">综合管理</h3>
+                        <div class="btn-group btn-group-justified" style="padding: 20px;">
+                            <div class="btn-group">
+                                <button type="button" style="font-size: large;font-weight:500; " class="btn btn-default"><img src="/Images/details/welcome_s01.png" alt="..." class="img-circle">部门经费结算管理系统</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" style="font-size: large;font-weight:500; " class="btn btn-default"><img src="/Images/details/welcome_s02.png" alt="..." class="img-circle">审核结算管理系统</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" style="font-size: large;font-weight:500; " class="btn btn-default"><img src="/Images/details/welcome_s03.png" alt="..." class="img-circle">会计辅助记账系统</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" style="font-size: large;font-weight:500; " class="btn btn-default"><img src="/Images/details/welcome_s04.png" alt="..." class="img-circle">出纳辅助记账系统</button>
+                            </div>
+                        </div>
+                        <div class="btn-group btn-group-justified" style="padding:0px 20px 20px 20px;">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default"><img src="/Images/details/welcome_s05.png" alt="..." class="img-circle">票据扫描系统</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default"><img src="/Images/details/welcome_s06.png" alt="..." class="img-circle">发票真伪识别系统</button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default"><img src="/Images/details/welcome_s07.png" alt="..." class="img-circle">资产登记系统</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

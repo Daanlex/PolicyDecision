@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css/css")
+@Scripts.Render("~/bundles/jquery")
+<style>
+    #show {
+        position: relative;
+        margin: 20px auto;
+        width: 1000px;
+    }
+
+    .item {
+        position: absolute;
+        cursor: pointer;
+    }
+</style>
+
+<script src="~/bootstrap/jquery/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/touch-0.2.14.min.js"></script>
+<script src="~/Scripts/prevent.js"></script>
+<script>
+    var len;
+    var showerObj;
+    var listObj;
+    var showerWidth = 1000;
+    var showerHeight = 600;
+    var r;
+    var cR = 0;
+    var ccR = 0;
+    var timer = 0;
+    window.onload = function () {
+        showerObj = document.getElementById("show");
+        listObj = showerObj.getElementsByTagName("div");
+        len = listObj.length;
+
+        r = Math.PI / 180 * 360 / len;
+        for (var i = 0; i < len; i++) {
+            var item = listObj[i];
+            item.style.top = showerHeight / 2 + Math.sin(r * i) * showerWidth / 2 - 20 + "px";
+            item.style.left = showerWidth / 2 + Math.cos(r * i) * showerWidth / 2 - 30 + "px";
+            item.rotate = (r * i + 2 * Math.PI) % (2 * Math.PI);
+        }
+        var rX = showerObj.offsetLeft + showerWidth / 2;
+        var ry = showerObj.offsetTop + showerHeight / 2;
+        var rotate = function () {
+            ccR = (ccR + 2 * Math.PI) % (2 * Math.PI);
+            if (cR - ccR < 0) cR = cR + 2 * Math.PI;
+            if (cR - ccR < Math.PI) {
+                ccR = ccR + (cR - ccR) / 19;
+            } else {
+                ccR = ccR - (2 * Math.PI + ccR - cR) / 19;
+            }
+            if (Math.abs((cR + 2 * Math.PI) % (2 * Math.PI) - (ccR + 2 * Math.PI) % (2 * Math.PI)) < Math.PI / 720) {
+                ccR = cR;
+                clearInterval(timer);
+                timer = 0;
+            }
+            for (var i = 0; i < len; i++) {
+                var item = listObj[i];
+                var w, h;
+                var sinR = Math.sin(r * i + ccR);
+                var cosR = Math.cos(r * i + ccR);
+                w = 60 + 0.6 * 60 * sinR;
+                h = (40 + 0.6 * 40 * sinR);
+                item.style.cssText += ";width:" + 210 + "px;height:" + 275 + "px;top:" + parseInt(showerHeight / 2 + sinR * showerWidth / 2 / 3 - w / 2) + "px;left:" + parseInt(showerWidth / 2 + cosR * showerWidth / 2 - h / 2) + "px;z-index:" + parseInt(showerHeight / 2 + sinR * showerWidth / 2 / 3 - w / 2) + ";";
+
+            }
+        }
+        document.getElementById("l").onclick = function () {
+            cR = (cR + r + 2 * Math.PI) % (2 * Math.PI);
+            timer || (timer = setInterval(rotate, 10));
+        }
+        document.getElementById("r").onclick = function () {
+            cR = (cR - r + 2 * Math.PI) % (2 * Math.PI);
+            timer || (timer = setInterval(rotate, 10));
+        }
+        rotate();
+        $('body').bind('swipeleft swiperight', function (ev) {
+            if (ev.type == "swipeleft") {
+                $('#l').click();
+                ev.preventDefault();
+                ev.stopPropagation();
+            }
+            else if (ev.type == "swiperight") {
+                $('#r').click();
+                ev.preventDefault();
+                ev.stopPropagation();
+            }
+        });
+        setInterval(changeDivStyle, 400);
+    }
+    function changeDivStyle() {
+        /*$.each(showerObj.getElementsByTagName("div"),function(index,ele){
+                       if(ele.style['z-index']==284){
+                           $(ele).css();
+                       } else{
+                           $(ele).css();
+                       }
+        });*/
+
+    }
+</script>
+<link href="~/Images/Alarm/style.css" rel="stylesheet" type="text/css">
+<table width="1920" border="0" align="center" cellpadding="0" cellspacing="0" background="~/Images/Alarm/bg.jpg">
+    <tbody>
+        <tr>
+            <td width="640" height="100" class="font40" style="padding-left:40px"></td>
+            <td width="640" align="center" class="font50"></td>
+            <td width="640" align="right" style="padding-right:40px"></td>
+            <td width="640" align="right" style="padding-right:40px">
+                <a href="~/Home">
+                    <img src="~/Images/Alarm/首页.png" width="42" height="67" />
+                </a>
+            </td>
+
+        </tr>
+        <tr>
+            <td height="980" colspan="3" valign="top">
+                <table width="1300" border="0" align="center" cellpadding="20" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td height="650" align="center" valign="top">
+                                <div id="l"></div>
+                                <div id="r"></div>
+                                <div id="show">
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="vertical-align: middle; line-height: 275px; background-image: url(../Images/Alarm/审批权限预警.png); background-size: 210px 275px; ">
+                                            @*<span class="badge" style="color: red; font-size: xx-large;margin-top:100px;">21</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/预算调整预警.png); background-size: 210px 275px; ">
+                                            @*  <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">7</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/敏感开支预警.png); background-size: 210px 275px; ">
+                                            @* <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">2</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/预算外上缴预警.png); background-size: 210px 275px; ">
+                                            @* <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">5</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/接待开支预警.png); background-size: 210px 275px; ">
+                                            @*  <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">10</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/福利补助预警.png); background-size: 210px 275px; ">
+                                            @* <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">10</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/现金使用预警.png); background-size: 210px 275px; ">
+                                            @* <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">10</span>*@
+                                        </div>
+                                    </a>
+                                    <a href="/Alarm/jump1">
+                                        <div class="item" style="line-height: 275px; background-image: url(../Images/Alarm/报销发票预警.png); background-size: 210px 275px; ">
+                                            @* <span class="badge" style="color: red; font-size: xx-large; margin-top: 100px; ">10</span>*@
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+

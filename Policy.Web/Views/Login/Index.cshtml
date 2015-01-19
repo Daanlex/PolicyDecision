@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+@Styles.Render("~/bootstrap/css/css")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/js")
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+    <style type="text/css">
+        body {
+            background-image: url(/Images/login/bg.jpg);
+            background-repeat: no-repeat;
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+        }
+
+        #divcenter {
+            position: absolute; /*层漂浮*/
+            top: 50%;
+            left: 50%;
+            width: 550px;
+            height: 77px;
+            margin-top: -38px; /*注意这里必须是DIV高度的一半*/
+            margin-left: -265px; /*这里是DIV宽度的一半*/
+            background-image: url(/Images/login/input.png);
+            background-repeat: no-repeat;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('#txtPassword').focus(); //把焦点放在第一个文本框
+            var $inp = $('#txtPassword'); //所有的input元素
+            $inp.keypress(function (e) { //这里给function一个事件参数命名为e，叫event也行，随意的，e就是IE窗口发生的事件。
+                var key = e.which; //e.which是按键的值
+                if (key == 13) {
+                    if ($inp.val() == "123456") {
+                        window.location.href = "/Home/Index";
+                    }
+                    else {
+                        $('#myModal').modal('show');
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body style="">
+    <div class="container">
+        <div id="divcenter">
+            @*<div class="input-group">
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>*@
+            <input type="password" id="txtPassword" name="passWord" style=" position: absolute; top: 9px; left: 15px; width: 520px; height: 67px; font-size:xx-large; border: none;" class="input-block-level" placeholder="点击登录输入密码">
+            <!-- Modal -->
+            <!-- Button trigger modal -->
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">登录</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>密码不正确，登录失败！</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
+</body>
+</html>

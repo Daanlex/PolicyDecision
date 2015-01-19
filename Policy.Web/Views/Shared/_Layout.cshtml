@@ -1,0 +1,366 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bootstrap/css/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/js")
+    <script type="text/javascript">
+        @RenderSection("scripts", required: false)
+    </script>
+
+    <!-- 气泡弹出需要加载的 -->
+    <!-- Add jQuery library -->
+    @*<script src="~/bootstrap/jquery/jquery-1.10.2.min.js"></script>*@
+    <!-- Add fancyBox main JS and CSS files -->
+    <script src="~/bootstrap/fancybox/jquery.fancybox.pack.js"></script>
+    <link href="~/bootstrap/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <!-- Add Button helper (this is optional) -->
+    <link href="~/bootstrap/fancybox/helpers/jquery.fancybox-buttons.css" rel="stylesheet" />
+    <script src="~/bootstrap/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+
+    <style>
+        .device {
+            width: 100%;
+            position: relative;
+            height: 878px;
+        }
+
+        .swiper-v-container {
+            margin-left: 5px;
+            width: 100%;
+            height: 878px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vswiper-slide {
+            float: left;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 878px;
+            opacity: 0.4;
+            -webkit-transition: 300ms;
+            -moz-transition: 300ms;
+            -ms-transition: 300ms;
+            -o-transition: 300ms;
+            transition: 300ms;
+            -webkit-transform: scale(0);
+            -moz-transform: scale(0);
+            -ms-transform: scale(0);
+            -o-transform: scale(0);
+            transform: scale(0);
+        }
+
+        .swiper-slide-visible {
+            opacity: 0.5;
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            -ms-transform: scale(0.8);
+            -o-transform: scale(0.8);
+            transform: scale(0.8);
+        }
+
+        .swiper-slide-active {
+            top: 0;
+            opacity: 1;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transform: scale(1);
+        }
+
+        /*.one-slide {
+        }
+
+        .two-slide {
+            background-image: url("/Images/details/zcbm_dwt_bj.png");
+            background-repeat: no-repeat;
+        }
+
+        .three-slide {
+            background-image: url("/Images/details/zcbm_dwt_eb.png");
+            background-repeat: no-repeat;
+        }
+
+        .four-slide {
+            background-image: url("/Images/details/zcbm_dwt_hqb.png");
+            background-repeat: no-repeat;
+        }
+
+        .five-slide {
+            background-image: url("/Images/details/zcbm_dwt_jxb.png");
+            background-repeat: no-repeat;
+        }
+
+        .swiper-pagination-switch {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 8px;
+            background: #aaa;
+            margin-right: 8px;
+            cursor: pointer;
+            -webkit-transition: 300ms;
+            -moz-transition: 300ms;
+            -ms-transition: 300ms;
+            -o-transition: 300ms;
+            transition: 300ms;
+            opacity: 0;
+            position: relative;
+            top: -50px;
+        }
+        .vpagination {
+            position: absolute;
+            z-index: 20;
+            left: 10px;
+            top: 10px;
+        }*/
+
+        .swiper-pagination-switch {
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            background: #555;
+            margin: 0 0px 5px;
+            opacity: 0.8;
+            border: 1px solid #fff;
+            cursor: pointer;
+        }
+
+        .swiper-visible-switch {
+            opacity: 1;
+            top: 0;
+            background: #aaa;
+        }
+
+        .swiper-active-switch {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid" style="overflow-x:hidden;">
+        <div class="row" style="z-index:-1">
+            <div class="col-lg-12 col-md-12 col-xs-12" style=" height:150px;background-image: url('/Images/details/详情页_bg1.jpg');background-size:cover">
+                <div class="col-lg-2 col-md-2 col-xs-2" style="margin-top:90px">
+                    <img id="unit" src="/Images/details/单位_on.png" style="float:left;height:60px;width:49%" alt="Responsive image">
+                    <img src="/Images/details/科目.png" style="float:right; height:60px;width:49%" alt="Responsive image">
+                </div>
+                <div class="col-lg-8   col-md-8 col-xs-8">
+                    <div class="col-lg-offset-5 col-lg-9  col-md-9 col-xs-9" style="height:50px;width:100%"></div>
+                    <div class="col-lg-offset-5  col-lg-9  col-md-9 col-xs-9" style="height:55px;width:100%">
+                        <img id="nd" src="/Images/details/nd_on.png" style="height:36px;margin-left:0;" alt="Responsive image">
+                        <img id="jd" src="/Images/details/jd.png" style="height:36px;margin-left:-10px;" alt="Responsive image">
+                        <img id="yf" src="/Images/details/yf.png" style="height:36px;margin-left:-10px;" alt="Responsive image">
+                        <img id="ln" src="/Images/details/ln.png" style="height:36px;margin-left:-10px;" alt="Responsive image">
+                    </div>
+                    <div class="col-lg-offset-2 col-lg-12  col-md-12 col-xs-12" style="height:30px;width:100%">
+                        <img src="/Images/details/line_1.png" style="height:30px;width:20%; margin-left:0;" alt="Responsive image">
+                        <img id="nd_2013" src="/Images/details/2013.png" style="height:30px;width:10%;margin-left:-4px;" alt="Responsive image">
+                        <img src="/Images/details/line_2.png" style="height:30px;width:10%;margin-left:-4px;" alt="Responsive image">
+                        <img id="nd_2014" src="/Images/details/2014_on.png" style="height:30px;width:10%;margin-left:-6px;" alt="Responsive image">
+                        <img src="/Images/details/line_2.png" style="height:30px;width:10%;margin-left:-6px;" alt="Responsive image">
+                        <img id="nd_2015" src="~/Images/details/2015.png" style="height:30px;width:10%;margin-left:-6px;" alt="Responsive image">
+                        <img src="/Images/details/line_3.png" style="height:30px;width:20%;margin-left:-6px;" alt="Responsive image">
+                    </div>
+                </div>
+                <div class="col-lg-2  col-md-2 col-xs-2">
+                    <img src="/Images/details/首页.png" style="float:right;height:50px;margin-top:10px;margin-right:10px;" class="img-responsive" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+        <div class="row" style="">
+            <div class="col-lg-2 col-md-2 col-xs-2" style="background-image:url('/Images/details/详情页_bg2.jpg');height:878px;">
+                <link href="~/ztree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+                <script src="~/ztree/js/jquery.ztree.core-3.5.min.js"></script>
+                <script type="text/javascript">
+                    var zTree;
+                    var setting = {
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        view: {
+                            dblClickExpand: false,
+                            showLine: false,
+                            fontCss: {
+                                color: 'red',
+                                size: '20px'
+                            }
+                        },
+                        callback: {
+                            onClick: onClick,
+                            onDblClick: onDblClick,
+                            beforeExpand: beforeExpand,
+                            onExpand: onExpand
+                        }
+                    };
+
+                    var zNodes = [
+                        { id: 1, pId: 0, name: "总参谋部", zname: "zcmb", open: true, icon: "/Images/details/root_icon.png" },
+                        { id: 2, pId: 1, name: "本级", zname: "zcmb_bj", icon: "/Images/details/unit_icon.png" },
+                        { id: 21, pId: 2, name: "司令部", zname: "zcmb_bj_slb", icon: "/Images/details/unit_icon.png" },
+                        { id: 22, pId: 2, name: "政治部", zname: "zcmb_bj_zzb", icon: "/Images/details/unit_icon.png" },
+                        { id: 23, pId: 2, name: "后勤部", zname: "zcmb_bj_hqb", icon: "/Images/details/unit_icon.png" },
+                        { id: 24, pId: 2, name: "装备部", zname: "zcmb_bj_zbb", icon: "/Images/details/unit_icon.png" },
+                        { id: 3, pId: 1, name: "办公厅", zname: "zcmb_bgt", icon: "/Images/details/unit_icon.png" },
+                        { id: 31, pId: 3, name: "一师", zname: "zcmb_bgt_ys", icon: "/Images/details/unit_icon.png" },
+                        { id: 311, pId: 31, name: "本级", zname: "zcmb_bgt_ys_bj", icon: "/Images/details/unit_icon.png" },
+                        { id: 3111, pId: 311, name: "司令部", zname: "zcmb_bgt_ys_bj_slb", icon: "/Images/details/unit_icon.png" },
+                        { id: 3112, pId: 311, name: "政治部", zname: "zcmb_bgt_ys_bj_zzb", icon: "/Images/details/unit_icon.png" },
+                        { id: 3113, pId: 311, name: "后勤部", zname: "zcmb_bgt_ys_bj_hqb", icon: "/Images/details/unit_icon.png" },
+                        { id: 3114, pId: 311, name: "装备部", zname: "zcmb_bgt_ys_bj_zbb", icon: "/Images/details/unit_icon.png" },
+                        { id: 312, pId: 31, name: "一团", zname: "zcmb_bgt_ys_yt", icon: "/Images/details/unit_icon.png" },
+                        { id: 313, pId: 31, name: "二团", zname: "zcmb_bgt_ys_et", icon: "/Images/details/unit_icon.png" },
+                        { id: 32, pId: 3, name: "二师", zname: "zcmb_bgt_es", icon: "/Images/details/unit_icon.png" },
+                        { id: 33, pId: 3, name: "三师", zname: "zcmb_bgt_ss", icon: "/Images/details/unit_icon.png" },
+                        { id: 4, pId: 1, name: "二部", zname: "zcmb_eb", icon: "/Images/details/unit_icon.png" },
+                        { id: 5, pId: 1, name: "三部", zname: "zcmb_sb", icon: "/Images/details/unit_icon.png" },
+                        { id: 6, pId: 1, name: "通信部", zname: "zcmb_txb", icon: "/Images/details/unit_icon.png" },
+                        { id: 7, pId: 1, name: "军训部", zname: "zcmb_jxb", icon: "/Images/details/unit_icon.png" }
+                    ];
+
+                    var curExpandNode = null;
+                    function beforeExpand(treeId, treeNode) {
+                        var pNode = curExpandNode ? curExpandNode.getParentNode() : null;
+                        var treeNodeP = treeNode.parentTId ? treeNode.getParentNode() : null;
+                        var zTree = $.fn.zTree.getZTreeObj("tree");
+                        for (var i = 0, l = !treeNodeP ? 0 : treeNodeP.children.length; i < l; i++) {
+                            if (treeNode !== treeNodeP.children[i]) {
+                                zTree.expandNode(treeNodeP.children[i], false);
+                            }
+                        }
+                        while (pNode) {
+                            if (pNode === treeNode) {
+                                break;
+                            }
+                            pNode = pNode.getParentNode();
+                        }
+                        if (!pNode) {
+                            singlePath(treeNode);
+                        }
+
+                    }
+
+                    function singlePath(newNode) {
+                        if (newNode === curExpandNode) return;
+
+                        var zTree = $.fn.zTree.getZTreeObj("tree"),
+                            rootNodes, tmpRoot, tmpTId, i, j, n;
+
+                        if (!curExpandNode) {
+                            tmpRoot = newNode;
+                            while (tmpRoot) {
+                                tmpTId = tmpRoot.tId;
+                                tmpRoot = tmpRoot.getParentNode();
+                            }
+                            rootNodes = zTree.getNodes();
+                            for (i = 0, j = rootNodes.length; i < j; i++) {
+                                n = rootNodes[i];
+                                if (n.tId != tmpTId) {
+                                    zTree.expandNode(n, false);
+                                }
+                            }
+                        } else if (curExpandNode && curExpandNode.open) {
+                            if (newNode.parentTId === curExpandNode.parentTId) {
+                                zTree.expandNode(curExpandNode, false);
+                            } else {
+                                var newParents = [];
+                                while (newNode) {
+                                    newNode = newNode.getParentNode();
+                                    if (newNode === curExpandNode) {
+                                        newParents = null;
+                                        break;
+                                    } else if (newNode) {
+                                        newParents.push(newNode);
+                                    }
+                                }
+                                if (newParents != null) {
+                                    var oldNode = curExpandNode;
+                                    var oldParents = [];
+                                    while (oldNode) {
+                                        oldNode = oldNode.getParentNode();
+                                        if (oldNode) {
+                                            oldParents.push(oldNode);
+                                        }
+                                    }
+                                    if (newParents.length > 0) {
+                                        zTree.expandNode(oldParents[Math.abs(oldParents.length - newParents.length) - 1], false);
+                                    } else {
+                                        zTree.expandNode(oldParents[oldParents.length - 1], false);
+                                    }
+                                }
+                            }
+                        }
+                        curExpandNode = newNode;
+                    }
+
+                    function onExpand(event, treeId, treeNode) {
+                        curExpandNode = treeNode;
+                    }
+
+                    function onClick(e, treeId, treeNode) {
+                        var zTree = $.fn.zTree.getZTreeObj("tree");
+                        zTree.expandNode(treeNode);
+                    }
+
+                    function onDblClick(e, treeId, treeNode) {
+                        if (treeNode.isParent) { //有子节点
+                            treeNode
+                            switchToThumbPic(treeId, treeNode);
+                        } else {
+                            openBookPage(treeId, treeNode);
+                        }
+                    }
+
+                    var switchToThumbPic = function (treeId, treeNode) { };
+                    var openBookPage = function (treeId, treeNode) { };
+
+                    $(function () {
+                        $.fn.zTree.init($("#tree"), setting, zNodes);
+
+                        $("#thumblist").hide();
+
+                        $("#unit").click(function () {
+                            $("#leftArea #tree").show();
+                            $("#thumblist").hide();
+                        });
+
+
+                    });
+
+                </script>
+                <div id="leftArea" class="row center-block text-center">
+                    @RenderSection("left", false);
+                    <ul id="tree" class="ztree "></ul>
+                    <div id="thumblist">
+                        <div class="device">
+                            <div class="swiper-v-container">
+                                <div class="swiper-wrapper" id="leftswiper">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="~/bootstrap/js/idangerous.swiper.js"></script>
+                    
+                    </script>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-10 col-xs-10">
+                @RenderSection("right", false)
+            </div>
+
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,604 @@
+﻿@{
+    ViewBag.Title = "翻书";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/bundles/css/swiper")
+<!-- Add Swiper -->
+<link href="~/bootstrap/css/idangerous.swiper.css" rel="stylesheet" />
+
+<style>
+    .swiper-container {
+        width: 1490px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .red-slide {
+        /*background: #ca4040;*/
+        background-image: url("/Images/details/zcmb_bm_2014nd.jpg");
+        background-repeat: no-repeat;
+    }
+
+    .blue-slide {
+        /*background: #4390ee;*/
+        background-image: url("/Images/details/zcmb_bm_2013nd.jpg");
+        background-repeat: no-repeat;
+    }
+
+    .orange-slide {
+        /*background: #ff8604;*/
+        background-image: url("/Images/details/zcmb_bm_2015nd.jpg");
+        background-repeat: no-repeat;
+    }
+
+    .swiper-slide .title {
+        font-style: italic;
+        font-size: 42px;
+        margin-top: 80px;
+        margin-bottom: 0;
+        line-height: 45px;
+    }
+
+    .swiper-slide p {
+        font-style: italic;
+        font-size: 25px;
+    }
+
+    .swiper-pagination-switch {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background: #555;
+        margin-right: 5px;
+        opacity: 0.8;
+        border: 1px solid #fff;
+        cursor: pointer;
+    }
+
+    .swiper-active-switch {
+        background: #fff;
+    }
+
+    .swiper-dynamic-links {
+        text-align: center;
+    }
+
+        .swiper-dynamic-links a {
+            display: inline-block;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            font-size: 12px;
+            text-decoration: none;
+            color: #333;
+            background: #eee;
+        }
+</style>
+<script type="text/javascript">
+    var prefix = "/Images/details/";
+    //动态书目录
+    var bookmark_data = [
+        {
+            'onelevel': '单据一：2014【1】号',
+            'Twolevel': [{ 'outline': '1.1 慰问群众', 'pageNo': 1 }, { 'outline': '1.2 集中购买办公用品', 'pageNo': 1 }, { 'outline': '1.3 参加信息化会议集训', 'pageNo': 1 }]
+        },
+        {
+            'onelevel': '单据二：2014【2】号',
+            'Twolevel': [{ 'outline': '2.1 慰问群众', 'pageNo': 1 }, { 'outline': '2.2 车辆维修保养费', 'pageNo': 1 }, { 'outline': '2.3 院校训练场地建设费', 'pageNo': 1 }]
+        },
+        {
+            'onelevel': '单据三：2014【3】号',
+            'Twolevel': [{ 'outline': '3.1 慰问群众', 'pageNo': 1 }, { 'outline': '3.2 集中购买办公用品', 'pageNo': 1 }, { 'outline': '3.3 参加信息化会议集训', 'pageNo': 1 }]
+        },
+        {
+            'onelevel': '单据一：2014【4】号',
+            'Twolevel': [{ 'outline': '4.1 慰问群众', 'pageNo': 1 }, { 'outline': '4.2 集中购买办公用品', 'pageNo': 1 }, { 'outline': '4.3 参加信息化会议集训', 'pageNo': 1 }]
+        },
+        {
+            'onelevel': '单据二：2014【5】号',
+            'Twolevel': [{ 'outline': '5.1 慰问群众', 'pageNo': 1 }, { 'outline': '5.2 车辆维修保养费', 'pageNo': 1 }, { 'outline': '5.3 院校训练场地建设费', 'pageNo': 1 }]
+        },
+        {
+            'onelevel': '单据三：2014【6】号',
+            'Twolevel': [{ 'outline': '6.1 慰问群众', 'pageNo': 1 }, { 'outline': '6.2 集中购买办公用品', 'pageNo': 1 }, { 'outline': '6.3 参加信息化会议集训', 'pageNo': 1 }, { 'outline': '6.4 给养材料费', 'pageNo': 1 }, { 'outline': '6.5 业务办公费', 'pageNo': 1 }]
+        }
+    ];
+
+
+    //左右滑动json
+    var njyl_data = {
+        "nd": [prefix + 'zcmb_2013_nd.jpg', prefix + 'zcmb_2014_nd.jpg', prefix + 'zcmb_2015_nd.jpg'],
+        "jd": [prefix + 'zcmb_2013_jd.jpg', prefix + 'zcmb_2014_jd.jpg', prefix + 'zcmb_2013_jd.jpg'],
+        "yf": [prefix + 'zcmb_2013_yf.jpg', prefix + 'zcmb_2013_yf.jpg', prefix + 'zcmb_2013_yf.jpg'],
+        "ln": [prefix + 'zcmb_2013_nd.jpg', prefix + 'zcmb_2014_nd.jpg', prefix + 'zcmb_2015_nd.jpg']
+    };
+
+    //缩略图json
+    var zoom_data = [{
+        'treeid': 2,
+        'thumbSize': '6',
+        'thumbImage':
+        [
+            { 'path': prefix + 'zcbm_bj_t.png', 'zoomPic': prefix + 'zcmb_bj_2014_nd.jpg' },
+            { 'path': prefix + 'zcbm_bgt_t.png', 'zoomPic': prefix + 'zcmb_dwt_bgtt_2014nd.jpg' },
+            { 'path': prefix + 'zcbm_eb_t.png', 'zoomPic': prefix + 'zcmb_dwt_ebt_2014nd.jpg' },
+            { 'path': prefix + 'zcbm_sb_t.png', 'zoomPic': prefix + 'zcmb_dwt_sbt_2014nd.jpg' },
+            { 'path': prefix + 'zcbm_txb_t.png', 'zoomPic': prefix + 'zcmb_dwt_txbt_2014nd.jpg' },
+            { 'path': prefix + 'zcbm_jxb_t.png', 'zoomPic': prefix + 'zcmb_dwt_jxbt_2014nd.jpg' }
+        ]
+
+
+    }];
+    //书籍json
+    var book_data = [{
+        'treeid': 21,
+        'title': '司令部',
+        'subtitle': '2014年度直接支出经费情况明细',
+        'bookSize': '10',
+        'bookImage':
+        [
+            //{ 'path': prefix + 'book1.png' },
+            { 'path': prefix + 'book2.png' },
+            { 'path': prefix + 'book3.png' },
+            { 'path': prefix + 'book4.png' },
+            { 'path': prefix + 'book5.png' },
+            { 'path': prefix + 'book6.png' },
+            { 'path': prefix + 'book7.png' },
+            { 'path': prefix + 'book8.png' },
+            { 'path': prefix + 'book9.png' },
+            { 'path': prefix + 'book10.png' }
+        ]
+    }];
+    //初始化加载绑定
+    $(function () {
+
+        //缩略图点击放大
+        $("#thumblist .vswiper-slide").live('dblclick', function () {
+            if ($(this).index() >= 0)
+                vSwiper.swipeTo($(this).index(), 800, false);
+
+            //在弹出层，放大图
+            $.fancybox.open({
+                //双击弹出的页面地址
+                href: $(this).children("a").children("img").attr("alt"),
+                openEffect: 'elastic',
+                closeEffect: 'elastic'
+            });
+
+        });
+
+        var last = null;
+        //点击书放大
+        $("#books img").live('click', function () {
+            $("#flipbook").turn('page', 2);
+            if ($(this).attr('width') > 500)
+                $(this).animate({ height: 500 }, 'slow');
+            else {
+                $(this).animate({ height: 530 }, 'slow', '', function () {
+                    if (last != null)
+                        //放大书后，弹出翻书效果
+                        last.animate({ height: 500 }, 'slow', function () { $('#modalOpenBooks').modal('show'); });
+                    else {
+                        $('#modalOpenBooks').modal('show');
+                    }
+                    last = $(this);
+                });
+            }
+        });
+    });
+    //打开缩略图
+    var vSwiper = null;
+    var switchToThumbPic = function (treeId, treeNode) {
+        $("#leftArea #tree").hide();
+        $("#thumblist").show();
+
+        var currId = treeNode.id; //当前点击的树的Id,通过Id,去取对应的图片，然后添加到缩略图中去
+        for (var i = 0; i < zoom_data.length; i++) {
+            var zoom = zoom_data[i];
+            //if (zoom["treeid"] != currId) return; 如果需要根据ID来加载图片，就通过这个currId去找
+            var imgs = zoom["thumbImage"];
+            var push = "";
+            for (var j = 0; j < imgs.length; j++) {
+                var img = imgs[j];
+                push += "<div class='vswiper-slide'>";
+                push += "<a href='javascript:void(0);'>";
+                push += "<img style='width: 150px; height: 150px;' src='" + img["path"] + "' alt='" + img["zoomPic"] + "' />";
+                push += "</a>";
+                push += "</div>";
+            }
+            $("#leftswiper").html(push);
+            if (vSwiper == null) {
+                vSwiper = new Swiper('.swiper-v-container', {
+                    centeredSlides: true,
+                    slidesPerView: 5,
+                    watchActiveIndex: true,
+                    mode: 'vertical',
+                    initialSlide: 2,
+                    slideClass: 'vswiper-slide'
+                });
+            } else
+                vSwiper.reInit();
+            vSwiper.resizeFix();
+            vSwiper.activeIndex = 3;
+        }
+    };
+    //打开书籍
+    var openBookPage = function (treeId, treeNode) {
+        var currId = treeNode.id;
+        for (var i = 0; i < book_data.length; i++) {
+            var books = book_data[i]["bookImage"];
+            addBooks(books);
+        }
+    };
+    var addBooks = function (books) {
+        $('#modalBooks').modal('show');
+
+        $("#books").html("");
+        for (var i = 0; i < books.length; i++) {
+            $("#books").append("<img id='book" + i + "'  src='" + (books[i]["path"]) + "' width='80' height='300' style='opacity: 0.1' />");
+        }
+        for (var i = 0; i < books.length; i++) {
+            $("#book" + i).animate({
+                margin: '5px',
+                opacity: '1',
+                height: '500px',
+            }, 1000
+            );
+        }
+    };
+
+</script>
+@section left
+{
+    <div class="modal fade  text-center" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog " style="display: inline-block; width: 90%; margin-top: 80px;">
+            <div class="modal-content">
+                <div style="opacity: 1; position: absolute; top: -50px; right: -30px;">
+                    @*<button type="button" class="btn btn-danger" style="margin:-10px 0" data-dismiss="modal">关闭</button>*@
+                    <img alt="" style="margin: -10px 0" data-dismiss="modal" src="~/Images/details/关闭.png" />
+                </div>
+                <div class="modal-body">
+                    <img src="~/Images/details/zcmb_bm_2013nd.jpg" style="opacity: 0;" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade  text-center" id="modalBooks" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog " style="display: inline-block; width: 85%; height: 90%; margin: 200px 80px;">
+            <div class="modal-content">
+                <div style="opacity: 1; position: absolute; top: -50px; right: -30px;">
+                    @*<button type="button" class="btn btn-danger" style="margin:-10px 0" data-dismiss="modal">关闭</button>*@
+                    <img alt="" style="margin: -10px 0" data-dismiss="modal" src="~/Images/details/关闭.png" />
+                </div>
+                <div class="modal-body">
+                    <div id="books" class="row text-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade  text-center" id="modalOpenBooks" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog " style="display: inline-block; width: 90%; height: 100%; margin: 100px 80px;">
+            <div class="modal-content">
+                <div style="opacity: 1; background-color: black; position: absolute; top: -50px; right: -30px;">
+                    <img alt="" style="margin: -10px 0" data-dismiss="modal" src="~/Images/details/关闭.png" />
+                </div>
+                <div class="modal-body">
+                    <style type="text/css">
+                        #flipbook {
+                            width: auto;
+                            height: auto;
+                        }
+
+                        #flipbook .turn-page {
+                            background-color: #ccc;
+                            border: 1px solid Red;
+                        }
+                    </style>
+                    <script src="~/bootstrap/js/turn.min.js"></script>
+                    <div style="width: 4%; height: 100%; float: left"><img id="mulu" src="~/Images/details/目录.png" onclick=" javascript: $('#flipbook').turn('page', 2) " style="width: 100%;"></div>
+                    <div style="width: 96%; float: right">
+                        <div id="flipbook" style="font-size: 18px;font-family:'Microsoft YaHei'"> 
+                            <div class="hard" style="background-color: #9A32CD">书本目录</div>
+                            <div class="hard text-left" id="opleft" style="background-image:url('/Images/details/目录l.png');background-size:100% 100%">
+                                <div style="width:100%;height:17%"></div>
+                                <ul>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6;">目录1</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>集中购买办公用品</li>
+                                            <li>参加信息化会议集训</li>
+                                        </ol>
+                                    </li>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录2</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>车辆维修保养费</li>
+                                            <li>院校训练场地建设费</li>
+                                        </ol>
+                                    </li>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录3</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>集中购买办公用品</li>
+                                            <li>参加信息化会议集训</li>
+                                        </ol>
+                                    </li>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录4</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>集中购买办公用品</li>
+                                            <li>参加信息化会议集训</li>
+                                        </ol>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hard  text-left" id="opright" style="background-image:url('/Images/details/目录r.png') ;background-size:100% 100%">
+                                <div style="width:100%;height:5%"></div>
+                                <ul>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录5</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>集中购买办公用品</li>
+                                            <li>参加信息化会议集训</li>
+                                        </ol>
+                                    </li>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录6</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>车辆维修保养费</li>
+                                            <li>院校训练场地建设费</li>
+                                        </ol>
+                                    </li>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录7</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>给养材料费</li>
+                                            <li>院校训练场地建设费</li>
+                                        </ol>
+                                    </li>
+                                    <li class="list-unstyled">
+                                        <strong style="color:#0067b6">目录8</strong>
+                                        <ol>
+                                            <li>慰问群众</li>
+                                            <li>车辆维修保养费</li>
+                                            <li>院校训练场地建设费</li>
+                                        </ol>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hard"><img src="~/Images/details/查看明细_书展开1l.png" style="width: 100%; height: 100%"> </div>
+                            <div class="hard"><img src="~/Images/details/查看明细_书展开1r.png" style="width: 100%; height: 100%"></div>
+                            <div class="hard"> <img src="~/Images/details/查看明细_书展开2l.png" style="width: 100%; height: 100%"></div>
+                            <div class="hard"> <img src="~/Images/details/查看明细_书展开2r.png" style="width: 100%; height: 100%"> </div>
+                            <div class="hard" style="">书本末尾</div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function() {
+                            $("#opleft ol li").live("click", function () {
+                                $("#flipbook").turn('page',4);
+                            });
+                            $("#opright ol li").live("click", function () {
+                                $("#flipbook").turn('page', 6);
+                            });
+                            $('#flipbook').turn(
+                            {
+                                width: $(window).width() * 0.9,
+                                height: $(window).height() * 0.8,
+                                autoCenter: true,
+                                page: 2,
+                                turnCorners: 'bl,br',
+                            });
+                            $("#flipbook").bind("turned", function(event, pageObject, turned) {
+                                var curr = $("#flipbook").turn('page');
+                                var pages = $("#flipbook").turn('pages');
+                                if (curr == pages)
+                                    $('#modalOpenBooks').modal('hide');
+                                else if (curr == 1)
+                                    $("#mulu").hide();
+                                else
+                                    $("#mulu").show();
+
+                            });
+                        });
+
+                    </script>
+
+                    @* <link href="/fashu/css/demo.css" rel="stylesheet" />
+                        <link href="/fashu/css/style.css" rel="stylesheet" />
+                        <script src="/fashu/js/modernizr.custom.08464.js"></script>
+                        <script id="pageTmpl" type="text/x-jquery-tmpl">
+                            <div class="${theClass}" style="${theStyle}">
+                                <div class="front">
+                                    <div class="outer">
+                                        <div class="content" style="${theContentStyleFront}">
+                                            <div class="inner">{{html theContentFront}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="back">
+                                    <div class="outer">
+                                        <div class="content" style="${theContentStyleBack}">
+                                            <div class="inner">{{html theContentBack}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </script>
+                        <header class="main-title">
+                            <h1>实例演示 <strong>IN</strong></h1>
+                            <p>首长决策书籍查看 </p>
+                            <p><strong>翻书特效</strong></p>
+                        </header>
+                        <div id="flip" class="container">
+                            <div class="f-page ">
+                            </div>
+                            <div class="f-page ">
+                                <img src="~/Images/details/目录.png" style=" width:4%;margin-top:-35%">
+                                <img src="~/Images/details/查看明细_书展开1l.png" style="height:100%; width:45.7%;">
+                                <img src="~/Images/details/查看明细_书展开1r.png" style=" height:100%; width:45.7%;">
+                            </div>
+                            <div class="f-page ">
+                                <img src="~/Images/details/目录.png" style=" width:4%;margin-top:-35%">
+                                <img src="~/Images/details/查看明细_书展开2l.png" style="height:100%;  width:45.7%;">
+                                <img src="~/Images/details/查看明细_书展开2r.png" style=" height:100%; width:45.7%;">
+                            </div>
+                            <div class="f-page" style=" width:49.7%;">
+
+                                <div id="codrops-ad-wrapper">
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+
+                            var $container = $('#flip'),
+                            $pages = $container.children().hide();
+
+                            Modernizr.load({
+                                test: Modernizr.csstransforms3d && Modernizr.csstransitions,
+                                yep: ['/fashu/js/jquery.tmpl.min.js', '/fashu/js/jquery.history.js', '/fashu/js/core.string.js', '/fashu/js/jquery.touchSwipe-1.2.5.js', '/fashu/js/jquery.flips.js'],
+                                nope: '/fashu/css/fallback.css',
+                                page:1,
+                                callback: function (url, result, key) {
+
+                                    if (url === '/fashu/css/fallback.css') {
+                                        $pages.show();
+                                    }
+                                    else if (url === '/fashu/js/jquery.flips.js') {
+                                        $container.flips();
+                                    }
+
+                                }
+
+                            });
+
+                        </script>*@
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section right
+{
+    <div class="row">
+        <div class="swiper-container" style="height:878px;">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide blue-slide">
+                    <div class="title"></div>
+                </div>
+                <div class="swiper-slide red-slide">
+                    <div class="title"></div>
+                </div>
+                <div class="swiper-slide orange-slide">
+                    <div class="title"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/bootstrap/js/idangerous.swiper.js"></script>
+    <script>
+        var mySwiperRight = null;
+        $(function () {
+            mySwiperRight = new Swiper('.swiper-container', {
+                grabCursor: true,
+                paginationClickable: true,
+                initialSlide: 1
+            });
+            mySwiperRight.addCallback('SlideChangeEnd', function (swiper) {
+                //alert('你已选中了' + mySwiper.activeLoopIndex);
+                if (mySwiperRight.activeIndex == '0')
+                    changeNd('2013');
+                if (mySwiperRight.activeIndex == '1')
+                    changeNd('2014');
+                if (mySwiperRight.activeIndex == '2')
+                    changeNd('2015');
+            });
+        });
+
+
+        function changeNd(id) {
+
+            $("#nd_2013").attr("src", "/Images/details/2013.png");
+            $("#nd_2014").attr("src", "/Images/details/2014.png");
+            $("#nd_2015").attr("src", "/Images/details/2015.png");
+            if (id == '2013') {
+                $("#nd_2013").attr("src", "/Images/details/2013_on.png");
+            }
+            if (id == '2014') {
+                $("#nd_2014").attr("src", "/Images/details/2014_on.png");
+            }
+            if (id == '2015') {
+                $("#nd_2015").attr("src", "/Images/details/2015_on.png");
+            }
+        }
+
+        function changeMenu(id) {
+            $("#nd").attr("src", "/Images/details/nd.png");
+            $("#jd").attr("src", "/Images/details/jd.png");
+            $("#yf").attr("src", "/Images/details/yf.png");
+            $("#ln").attr("src", "/Images/details/ln.png");
+            if (id == 'nd') {
+                $("#nd").attr("src", "/Images/details/nd_on.png");
+            }
+            if (id == 'jd') {
+                $("#jd").attr("src", "/Images/details/jd_on.png");
+            }
+            if (id == 'yf') {
+                $("#yf").attr("src", "/Images/details/yf_on.png");
+            }
+            if (id == 'ln') {
+                $("#ln").attr("src", "/Images/details/ln_on.png");
+            }
+        }
+        //改变右下角最大的图片信息
+        function changeMainImg(id) {
+            $(".blue-slide").css('background-image', 'url(' + njyl_data[id][0] + ')');
+            $(".red-slide").css('background-image', 'url(' + njyl_data[id][1] + ')');
+            $(".orange-slide").css('background-image', 'url(' + njyl_data[id][2] + ')');
+
+        }
+        $(function () {
+            $("#nd_2013").click(function () {
+                changeNd('2013');
+                //切换右下角图片
+                mySwiperRight.swipeTo(0, 800, false);
+            });
+            $("#nd_2014").click(function () {
+                changeNd('2014');
+                //切换右下角图片
+                mySwiperRight.swipeTo(1, 800, false);
+            });
+            $("#nd_2015").click(function () {
+                changeNd('2015');
+                //切换右下角图片
+                mySwiperRight.swipeTo(2, 800, false);
+            });
+
+            $("#nd").click(function () {
+                changeMenu('nd');
+                changeMainImg('nd');
+            });
+            $("#jd").click(function () {
+                changeMenu('jd');
+                changeMainImg('jd');
+            });
+            $("#yf").click(function () {
+                changeMenu('yf');
+                changeMainImg('yf');
+            });
+            $("#ln").click(function () {
+                changeMenu('ln');
+                changeMainImg('ln');
+            });
+        });
+    </script>
+}
